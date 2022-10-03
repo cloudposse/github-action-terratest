@@ -1,6 +1,5 @@
 name: Test Terratest GitHub Action
 on:
-  pull_request:
   workflow_dispatch:
 
 jobs:
