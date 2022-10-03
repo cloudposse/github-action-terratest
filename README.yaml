@@ -56,7 +56,7 @@ usage: |-
           - name: Run Terratest
             uses: cloudposse/github-action-terratest@main
             with:
-              sourceDir: "test/src"
+              sourceDir: test/src
   ```
 
 include:
