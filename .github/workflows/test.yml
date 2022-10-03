@@ -15,4 +15,4 @@ jobs:
 
       - uses: ./
         with:
-          soureDir: "test/src"
+          sourceDir: "test/src"
