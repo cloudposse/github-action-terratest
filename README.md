@@ -78,7 +78,7 @@ It's 100% Open Source and licensed under the [APACHE2](LICENSE).
         - name: Run Terratest
           uses: cloudposse/github-action-terratest@main
           with:
-            sourceDir: "test/src"
+            sourceDir: test/src
 ```
 
 
