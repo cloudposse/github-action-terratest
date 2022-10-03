@@ -5,7 +5,7 @@
 #
 
 # Name of this project
-name: example-github-action-composite
+name: github-action-terratest
 
 # Tags of this project
 tags:
@@ -18,33 +18,27 @@ tags:
 license: "APACHE2"
 
 # Canonical GitHub repo
-github_repo: cloudposse/example-github-action-composite
+github_repo: cloudposse/github-action-terratest
 
 # Badges to display
 badges:
   - name: "Latest Release"
-    image: "https://img.shields.io/github/release/cloudposse/example-github-action-composite.svg"
-    url: "https://github.com/cloudposse/example-github-action-composite/releases/latest"
+    image: "https://img.shields.io/github/release/cloudposse/github-action-terratest.svg"
+    url: "https://github.com/cloudposse/github-action-terratest/releases/latest"
   - name: "Slack Community"
     image: "https://slack.cloudposse.com/badge.svg"
     url: "https://slack.cloudposse.com"
 
-related: []
-
 # Short description of this project
-description: Template repository of composite GitHub Action
-
-introduction: |-
-  This is template repository to create composite GitHub Actions. 
-  Feel free to use it as reference and starting point.
+description: A GitHub Action to run Terratest tests and post the results as a build artifact.
 
 references:
-  - name: "github-actions-workflows"
-    description: "Reusable workflows for different types of projects"
-    url: "https://github.com/cloudposse/github-actions-workflows"
-  - name: "example-github-action-release-workflow"
-    description: "Example application with complicated release workflow"
-    url: "https://github.com/cloudposse/example-github-action-release-workflow"
+  - name: "Composite Actions Documentation"
+    description: "The GitHub documentation for composite actions"
+    url: "https://docs.github.com/en/actions/creating-actions/creating-a-composite-action"
+  - name: "Terratest Project Repository"
+    description: "The official Terratest repository"
+    url: "https://github.com/gruntwork-io/terratest"
 
 # How to use this project
 usage: |-
@@ -59,14 +53,10 @@ usage: |-
       context:
         runs-on: ubuntu-latest
         steps:
-          - name: Example action
-            uses: cloudposse/example-github-action-composite@main
-            id: example
+          - name: Run Terratest
+            uses: cloudposse/github-action-terratest@main
             with:
-              param1: true
-  
-        outputs:
-          result: ${{ steps.example.outputs.result1 }}
+              sourceDir: "test/src"
   ```
 
 include:
@@ -74,5 +64,5 @@ include:
 
 # Contributors to this project
 contributors:
-  - name: "Igor Rodionov"
-    github: "goruha"
+  - name: "Matt Calhoun"
+    github: "mcalhoun"

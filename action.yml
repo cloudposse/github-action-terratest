@@ -1,23 +1,41 @@
-name: 'Example composite GitHub action'
-description: 'Example composite GitHub action'
+name: "Cloud Posse GitHub Action: Terratest"
+description: "A GitHub Action to run Terratest tests and post the results as an artifact"
 author: hello@cloudposse.com
 branding:
-  icon: 'file'
-  color: 'white'
+  icon: file
+  color: white
 inputs:
-  param1:
+  sourceDir:
     required: true
-    description: "Input parameter placeholder"
-    default: "true"
-outputs:
-  result1:
-    description: "Output result placeholder"
-    value: "${{ steps.context.outputs.action-result }}"
+    description: The directory containing the source code to test
+    default: "."
 runs:
-  using: "composite"
+  using: composite
   steps:
     - id: context
       shell: bash
       run: |
-          echo "::set-output name=action-result::${{ inputs.param1 }}"
+        echo "::set-output name=action-result::${{ inputs.param1 }}"
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
 
+    - uses: actions/setup-go@v3
+      with:
+        go-version-file: ${{ inputs.sourceDir}}/go.mod
+        cache: true
+        cache-dependency-path: ${{ inputs.sourceDir}}/go.mod
+
+    - name: Run Tests
+      shell: bash
+      working-directory: ${{ inputs.sourceDir }}
+      run: |
+        go install github.com/jstemmer/go-junit-report@latest
+        go test -v ./... | go-junit-report -set-exit-code > report.xml
+
+    - name: Post Test Summary
+      uses: test-summary/action@v1
+      with:
+        paths: |
+          ${{ inputs.sourceDir }}/report.xml
+      if: always()
