@@ -1,9 +1,9 @@
 name: "Cloud Posse GitHub Action: Terratest"
 description: "A GitHub Action to run Terratest tests and post the results as an artifact"
-author: hello@cloudposse.com
+author: Cloud Posse <hello@cloudposse.com>
 branding:
-  icon: file
-  color: white
+  icon: cloud-lightning
+  color: blue
 inputs:
   sourceDir:
     required: true
