@@ -18,9 +18,9 @@ runs:
 
     - uses: actions/setup-go@v3
       with:
-        go-version-file: ${{ inputs.sourceDir}}/go.mod
+        go-version-file: ${{ inputs.sourceDir }}/go.mod
         cache: true
-        cache-dependency-path: ${{ inputs.sourceDir}}/go.mod
+        cache-dependency-path: ${{ inputs.sourceDir }}/go.mod
 
     - name: Run Tests
       shell: bash
