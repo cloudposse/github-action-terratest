@@ -1,10 +1,8 @@
-name: Test the GitHub Action
+name: Test Terratest GitHub Action
 on:
-  #  # Uncomment when test added first time to register workflow and comment it back after workflow would be registered
-  #  #
-  #  # Added pull_request to register workflow from the PR.
-  #  # Read more https://stackoverflow.com/questions/63362126/github-actions-how-to-run-a-workflow-created-on-a-non-master-branch-from-the-wo
   pull_request:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
