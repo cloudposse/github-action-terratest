@@ -1,0 +1,12 @@
+name: Bump version
+on:
+  pull_request:
+    types:
+      - closed
+    branches:
+      - main
+
+jobs:
+    versioning:
+        uses: Inivata/gh-infra-cicd-workflows/.github/workflows/versioning.yml@main
+        secrets: inherit

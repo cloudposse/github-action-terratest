@@ -9,6 +9,10 @@ inputs:
     required: true
     description: The directory containing the source code to test
     default: "."
+  testTimeout:
+    required: false
+    description: The timeout of the test
+    default: "10m"
 runs:
   using: composite
   steps:
@@ -25,13 +29,15 @@ runs:
     - name: Run Tests
       shell: bash
       working-directory: ${{ inputs.sourceDir }}
+      env:
+        TTEST_TIMEOUT: ${{ inputs.testTimeout }}
       run: |
         go install github.com/jstemmer/go-junit-report@latest
-        go test -v ./... | go-junit-report -set-exit-code > report.xml
+        go test -timeout $TTEST_TIMEOUT -v ./... | go-junit-report -set-exit-code > report.xml
 
     - name: Post Test Summary
-      uses: test-summary/action@v1
+      uses: actions/upload-artifact@v3
       with:
-        paths: |
-          ${{ inputs.sourceDir }}/report.xml
+        name: ttest-result
+        path: ${{ inputs.sourceDir }}/report.xml
       if: always()
