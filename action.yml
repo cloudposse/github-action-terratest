@@ -30,7 +30,7 @@ runs:
         go test -v ./... | go-junit-report -set-exit-code > report.xml
 
     - name: Post Test Summary
-      uses: test-summary/action@v1
+      uses: test-summary/action@v2
       with:
         paths: |
           ${{ inputs.sourceDir }}/report.xml
