@@ -16,7 +16,7 @@ runs:
       with:
         fetch-depth: 0
 
-    - uses: actions/setup-go@v5
+    - uses: actions/setup-go@v6
       with:
         go-version-file: ${{ inputs.sourceDir }}/go.mod
         cache: true
